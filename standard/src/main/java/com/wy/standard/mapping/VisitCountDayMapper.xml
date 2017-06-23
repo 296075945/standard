@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wy.standard.dao.VisitCountDayDao" >
+  <resultMap id="BaseResultMap" type="com.wy.standard.model.VisitCountDay" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="ip_num" property="ipNum" jdbcType="INTEGER" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="base_num" property="baseNum" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="count_time" property="countTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, channel, source, ip_num, total_num, base_num, add_time, count_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from visit_count_day
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from visit_count_day
+    where 1=1
+    <if test="startDay != null">
+		and count_time >=#{startDay}
+	</if>
+	<if test="endDay != null">
+		<![CDATA[
+		and count_time <=#{endDay}
+		]]>
+	</if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from visit_count_day
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wy.standard.model.VisitCountDay" >
+    insert into visit_count_day (id, channel, source, 
+      ip_num, total_num, base_num, 
+      add_time, count_time)
+    values (#{id,jdbcType=INTEGER}, #{channel,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, 
+      #{ipNum,jdbcType=INTEGER}, #{totalNum,jdbcType=INTEGER}, #{baseNum,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{countTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wy.standard.model.VisitCountDay" >
+    insert into visit_count_day
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="ipNum != null" >
+        ip_num,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="baseNum != null" >
+        base_num,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="countTime != null" >
+        count_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="ipNum != null" >
+        #{ipNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="baseNum != null" >
+        #{baseNum,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countTime != null" >
+        #{countTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wy.standard.model.VisitCountDay" >
+    update visit_count_day
+    <set >
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="ipNum != null" >
+        ip_num = #{ipNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="baseNum != null" >
+        base_num = #{baseNum,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countTime != null" >
+        count_time = #{countTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wy.standard.model.VisitCountDay" >
+    update visit_count_day
+    set channel = #{channel,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      ip_num = #{ipNum,jdbcType=INTEGER},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      base_num = #{baseNum,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      count_time = #{countTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
