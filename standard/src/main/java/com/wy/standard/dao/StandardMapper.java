@@ -1,12 +1,15 @@
 package com.wy.standard.dao;
 
+
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.wy.standard.model.Standard;
 
 @Mapper
-@Repository
 public interface StandardMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -19,4 +22,6 @@ public interface StandardMapper {
     int updateByPrimaryKeySelective(Standard record);
 
     int updateByPrimaryKey(Standard record);
+    
+    List<Standard> getList(Map<String, Object> modal);
 }
