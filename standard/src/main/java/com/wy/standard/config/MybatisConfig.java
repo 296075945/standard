@@ -26,11 +26,11 @@ public class MybatisConfig implements TransactionManagementConfigurer  {
     public SqlSessionFactory sqlSessionFactoryBean() {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("com.wy.standard.model");
+        bean.setTypeAliasesPackage("com.**.model");
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
-            bean.setMapperLocations(resolver.getResources("classpath:com/wy/standard/mapping/*.xml"));
+            bean.setMapperLocations(resolver.getResources("classpath:com/**/mapping/*.xml"));
             return bean.getObject();
         } catch (Exception e) {
             e.printStackTrace();
