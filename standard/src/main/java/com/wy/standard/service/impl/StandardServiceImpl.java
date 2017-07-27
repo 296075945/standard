@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wy.common.datasource.DataSource;
+import com.wy.common.datasource.TargetDataSource;
 import com.wy.standard.dao.StandardMapper;
 import com.wy.standard.model.Standard;
 import com.wy.standard.model.StandardTree;
@@ -22,6 +24,7 @@ public class StandardServiceImpl implements StandardService {
 		standardMapper.insert(standard);
 	}
 	@Override
+	@TargetDataSource(name=DataSource.TEST)
 	public StandardTree getTree(Map<String, Object> modal) {
 		List<Standard> list = standardMapper.getList(modal);
 		//StandardTree standardTree = new StandardTree();

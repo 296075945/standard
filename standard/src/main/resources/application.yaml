@@ -1,0 +1,66 @@
+
+
+    
+server:
+  port: 8888
+  jsp-servlet:
+    init-parameters:
+      development: true
+spring:
+##mvc
+  mvc:
+   view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+##log
+logging:
+  file: log.log
+  level: debug
+
+#mybatis
+mybatis:
+  mapperLocations: classpath:com/**/mapper/*.xml
+##数据源
+dynamicdatasource:
+  names:
+    test,test2
+  test:
+    name: test
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: '123456'
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 300
+    initialSize: 20
+    maxWait: 6000
+    minIdle: 20
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+  test2:
+    name: test2
+    url: jdbc:mysql://localhost:3306/test2
+    username: root
+    password: '123456'
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 300
+    initialSize: 20
+    maxWait: 6000
+    minIdle: 20
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+
+
