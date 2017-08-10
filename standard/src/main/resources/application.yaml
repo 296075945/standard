@@ -1,5 +1,5 @@
 
-
+#debug: true
     
 server:
   port: 8888
@@ -15,7 +15,16 @@ spring:
 ##log
 logging:
   file: log.log
-  level: debug
+  level: 
+    com.wy: debug
+
+#dubbo
+dubbo:
+  application:
+    name: standrand
+  registry:
+    protocol: zookeeper
+    address: 127.0.0.1:2181
 
 #mybatis
 mybatis:
